@@ -41,3 +41,5 @@ if [ $RET -ne 0 ];then
     echo ssh-chmod failed: $RET
     exit 1
 fi
+
+echo Setup finished, now try to run ssh -i $FILENAME $USER/$HOST
