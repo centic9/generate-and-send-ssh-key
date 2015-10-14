@@ -10,6 +10,10 @@ Because I fail every time I try to do this manually.
 
 ## How
 
+##### Preconditions
+
+You need to be able to connect to the remote server with username and password. Making this type of connection work is out of scope of this tool.
+
 ##### Grab it
 
     git clone git://github.com/centic9/generate-and-send-ssh-key
