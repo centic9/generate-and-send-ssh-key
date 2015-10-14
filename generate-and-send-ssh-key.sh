@@ -8,6 +8,9 @@ KEYTYPE=rsa
 HOST=host
 USER=username
 
+# use "-p <nr>" if the ssh-server is listening on a different port
+SSH_OPTS=
+
 #
 # NO MORE CONFIG SETTING BELOW THIS LINE
 #
@@ -48,7 +51,7 @@ if [ $RET -ne 0 ];then
 fi
 
 echo Copying the key to the remote machine $USER@$HOST
-$SSH_COPY_ID -i $FILENAME $USER@$HOST
+$SSH_COPY_ID $SSH_OPTS -i $FILENAME $USER@$HOST
 RET=$?
 if [ $RET -ne 0 ];then
     echo ssh-copy-id failed: $RET
@@ -56,11 +59,11 @@ if [ $RET -ne 0 ];then
 fi
 
 echo Adjusting permissions to avoid errors in ssh-daemon
-$SSH $USER@$HOST "chmod go-w ~ && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
+$SSH $SSH_OPTS $USER@$HOST "chmod go-w ~ && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
 RET=$?
 if [ $RET -ne 0 ];then
     echo ssh-chmod failed: $RET
     exit 1
 fi
 
-echo Setup finished, now try to run ssh -i $FILENAME $USER@$HOST
+echo Setup finished, now try to run $SSH $SSH_OPTS -i $FILENAME $USER@$HOST
