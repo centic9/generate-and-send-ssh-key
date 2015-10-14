@@ -6,7 +6,7 @@ adjusts file-permissions both locally and on the remote server to avoid some com
 
 ## Why
 
-Because I fail every time I tried to do this manually.
+Because I fail every time I try to do this manually.
 
 ## How
 
@@ -33,6 +33,10 @@ This will ask for the password of the target host at least once, probably twice,
 
 Now you should be able to connect to the machine via ```ssh -i $FILENAME $USER@$HOST```. If you use the filename 
 ```~/.ssh/id_rsa``` you can omit the "-i" argument to ssh.
+
+## Caveat
+
+This script will remove write access to your home-directory for "group" and "other" on the remote server because ssh-public/private key authentication will not work otherwise. So if there are processes running as different user writing data to this directory they may fail after this script was run.
 
 ## Related documents
 
