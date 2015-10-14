@@ -16,8 +16,17 @@ USER=username
 SSH_KEYGEN=`which ssh-keygen`
 SSH=`which ssh`
 SSH_COPY_ID=`which ssh-copy-id`
-if [ -z "$SSH_KEYGEN" -o -z "$SSH" -o -z "$SSH_COPY_ID" ];then
-    echo Could not find the required tools, we need 'ssh', 'ssh-keygen', 'ssh-copy-id': $RET
+
+if [ -z "$SSH_KEYGEN" ];then
+    echo Could not find the 'ssh-keygen' executable
+    exit 1
+fi
+if [ -z "$SSH" ];then
+    echo Could not find the 'ssh' executable
+    exit 1
+fi
+if [ -z "$SSH_COPY_ID" ];then
+    echo Could not find the 'ssh-copy-id' executable
     exit 1
 fi
 
