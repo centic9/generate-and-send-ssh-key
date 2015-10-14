@@ -49,7 +49,7 @@ This script will remove write access to your home-directory for "group" and "oth
 
 #### Licensing
 
-   Copyright 2013, 2014, 2015 Dominik Stadler
+   Copyright 2015 Dominik Stadler
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
