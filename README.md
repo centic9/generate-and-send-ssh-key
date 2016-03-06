@@ -12,7 +12,7 @@ Because I fail every time I try to do this manually.
 
 ##### Preconditions
 
-You need to be able to connect to the remote server with username and password. Making this type of connection work is out of scope of this tool.
+You need to be able to connect to the remote server with username and password.
 
 ##### Grab it
 
@@ -22,10 +22,10 @@ You need to be able to connect to the remote server with username and password. 
 
 The script has some variables that you should configure before running the script:
 
-	cd generate-and-send-ssh-key
+    cd generate-and-send-ssh-key
     vi generate-and-send-ssh-key.sh
 
-You should at least set FILENAME, HOST and USER
+You should at least set `FILENAME`, `HOST` and `USER`. `FILENAME` should not exist yet as the tool will generate a new key.
 
 ##### Run it
 
@@ -53,7 +53,7 @@ This script will remove write access to your home-directory for "group" and "oth
 
 #### Licensing
 
-   Copyright 2015 Dominik Stadler
+   Copyright 2015-2016 Dominik Stadler
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
