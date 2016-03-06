@@ -28,10 +28,6 @@ if [ -z "$SSH" ];then
     echo Could not find the 'ssh' executable
     exit 1
 fi
-if [ -z "$SSH_COPY_ID" ];then
-    echo Could not find the 'ssh-copy-id' executable
-    exit 1
-fi
 
 # perform the actual work
 echo Creating a new key using $SSH-KEYGEN
@@ -51,7 +47,13 @@ if [ $RET -ne 0 ];then
 fi
 
 echo Copying the key to the remote machine $USER@$HOST
-$SSH_COPY_ID $SSH_OPTS -i $FILENAME $USER@$HOST
+if [ -z "$SSH_COPY_ID" ];then
+    echo Could not find the 'ssh-copy-id' executable, using manual copy instead
+    cat ${FILENAME}.pub | ssh $SSH_OPTS $USER@$HOST 'cat >> ~/.ssh/authorized_keys'
+else
+	$SSH_COPY_ID $SSH_OPTS -i $FILENAME $USER@$HOST
+fi
+
 RET=$?
 if [ $RET -ne 0 ];then
     echo ssh-copy-id failed: $RET
