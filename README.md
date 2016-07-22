@@ -1,12 +1,12 @@
 ## What
 
 This is a small script to perform all the tasks that are necessary to create a private/public keypair for 
-ssh-authentication and transfer it to a remote server. Additionally it performs some checks and 
+ssh-authentication for password-less connecting to a remote server. Additionally it performs some checks and 
 adjusts file-permissions both locally and on the remote server to avoid some common pitfalls.
 
 ## Why
 
-Because I fail every time I try to do this manually.
+Because I failed every time I tried to do this manually.
 
 ## How
 
@@ -40,7 +40,9 @@ Now you should be able to connect to the machine via ```ssh -i $FILENAME $USER@$
 
 ## Caveat
 
-This script will remove write access to your home-directory for "group" and "other" on the remote server because ssh-public/private key authentication will not work otherwise. So if there are processes running as different user writing data to this directory they may fail after this script was run.
+This script will remove write access to your home-directory for "group" and "other" on the remote server because 
+ssh-public/private key authentication will not work otherwise. So if there are processes running as different user 
+writing data to this directory they may fail after this script was run.
 
 ## Related documents
 
