@@ -51,7 +51,7 @@ if [ -z "$SSH_COPY_ID" ];then
     echo Could not find the 'ssh-copy-id' executable, using manual copy instead
     cat ${FILENAME}.pub | ssh $SSH_OPTS $USER@$HOST 'cat >> ~/.ssh/authorized_keys'
 else
-	$SSH_COPY_ID $SSH_OPTS -i $FILENAME $USER@$HOST
+	$SSH_COPY_ID $SSH_OPTS -i $FILENAME.pub $USER@$HOST
 fi
 
 RET=$?
