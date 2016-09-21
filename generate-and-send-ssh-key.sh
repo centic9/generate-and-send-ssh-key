@@ -39,7 +39,7 @@ if [ $RET -ne 0 ];then
 fi
 
 echo Adjust permissions of generated key-files locally
-chmod 0600 ${FILENAME}*
+chmod 0600 ${FILENAME} ${FILENAME}.pub
 RET=$?
 if [ $RET -ne 0 ];then
     echo chmod failed: $RET
