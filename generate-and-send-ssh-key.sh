@@ -73,4 +73,5 @@ if [ $RET -ne 0 ];then
     exit 1
 fi
 
-echo Setup finished, now try to run $SSH $SSH_OPTS -i $FILENAME $USER@$HOST
+# Cut out PubKeyAuth=no here as it should work without it now
+echo Setup finished, now try to run $SSH `echo $SSH_OPTS | sed -e 's/-o PubkeyAuthentication=no//g'` -i $FILENAME $USER@$HOST
