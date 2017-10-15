@@ -8,8 +8,8 @@ KEYTYPE=rsa
 HOST=host
 USER=username
 
-# use "-p <nr>" if the ssh-server is listening on a different port
-SSH_OPTS=
+# add "-p <port>" if the ssh-server is listening on a different port
+SSH_OPTS="-o PubkeyAuthentication=no"
 
 #
 # NO MORE CONFIG SETTING BELOW THIS LINE
@@ -30,12 +30,17 @@ if [ -z "$SSH" ];then
 fi
 
 # perform the actual work
-echo Creating a new key using $SSH-KEYGEN
-$SSH_KEYGEN -t $KEYTYPE -b $KEYSIZE  -f $FILENAME -N "$PASSPHRASE"
-RET=$?
-if [ $RET -ne 0 ];then
-    echo ssh-keygen failed: $RET
-    exit 1
+if [ -f $FILENAME ]
+then
+    echo Usig existing key
+else
+    echo Creating a new key using $SSH-KEYGEN
+    $SSH_KEYGEN -t $KEYTYPE -b $KEYSIZE  -f $FILENAME -N "$PASSPHRASE"
+    RET=$?
+    if [ $RET -ne 0 ];then
+        echo ssh-keygen failed: $RET
+        exit 1
+    fi
 fi
 
 echo Adjust permissions of generated key-files locally
@@ -46,7 +51,7 @@ if [ $RET -ne 0 ];then
     exit 1
 fi
 
-echo Copying the key to the remote machine $USER@$HOST
+echo Copying the key to the remote machine $USER@$HOST, this should ask for the password
 if [ -z "$SSH_COPY_ID" ];then
     echo Could not find the 'ssh-copy-id' executable, using manual copy instead
     cat ${FILENAME}.pub | ssh $SSH_OPTS $USER@$HOST 'cat >> ~/.ssh/authorized_keys'
@@ -60,7 +65,7 @@ if [ $RET -ne 0 ];then
     exit 1
 fi
 
-echo Adjusting permissions to avoid errors in ssh-daemon
+echo Adjusting permissions to avoid errors in ssh-daemon, this will ask once more for the password
 $SSH $SSH_OPTS $USER@$HOST "chmod go-w ~ && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
 RET=$?
 if [ $RET -ne 0 ];then
