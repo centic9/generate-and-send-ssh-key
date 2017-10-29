@@ -1,19 +1,75 @@
 #!/bin/bash
 
-# define settings here
+# define settings vi commandline-options
 KEYSIZE=2048
 PASSPHRASE=
 FILENAME=~/.ssh/id_test
 KEYTYPE=rsa
 HOST=host
-USER=username
+USER=${USER}
 
-# add "-p <port>" if the ssh-server is listening on a different port
+# use "-p <port>" if the ssh-server is listening on a different port
 SSH_OPTS="-o PubkeyAuthentication=no"
 
 #
 # NO MORE CONFIG SETTING BELOW THIS LINE
 #
+
+function usage() {
+	echo "Speciy some parameters, ${1}valid ones are:"
+    echo "  -u(--user) <username>, default: ${USER}"
+    echo "  -f(--file) <file>, default: ${FILENAME}"
+    echo "  -H(--host) <hostname>, default: ${HOST}"
+    echo "  -P(--port) <port>, default: ${PORT}"
+    echo "  -k(--keysize) <size>, default: ${KEYSIZE}"
+    echo "  -t(--keytype) <type>, default: ${KEYTYPE}"
+    exit 2
+}
+
+if [[ $# < 1 ]]
+then
+	usage
+fi
+
+while [[ $# > 0 ]]
+do
+	key="$1"
+	shift
+	case $key in
+		-u*|--user)
+			USER="$1"
+			shift
+			;;
+		-f*|--file)
+			FILENAME="$1"
+			shift
+			;;
+		-H*|--host)
+			HOST="$1"
+			shift
+			;;
+		-P*|--port)
+			SSH_OPTS="${SSH_OPTS} -p $1"
+			shift
+			;;
+		-k*|--keysize)
+			KEYSIZE="$1"
+			shift
+			;;
+		-t*|--keytype)
+			KEYTYPE="$1"
+			shift
+			;;
+		*)
+			# unknown option
+			usage "unknown parameter: $key, "
+			;;
+	esac
+done
+
+echo "Transferring key from ${FILENAME} to ${USER}@${HOST} using options '${SSH_OPTS}', keysize ${KEYSIZE} and keytype: ${KEYTYPE}"
+echo "Press enter to continue or CTRL-C to abort"
+read
 
 # check that we have all necessary parts
 SSH_KEYGEN=`which ssh-keygen`
