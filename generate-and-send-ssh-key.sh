@@ -19,8 +19,8 @@ function usage() {
 	echo "Speciy some parameters, ${1}valid ones are:"
     echo "  -u(--user) <username>, default: ${USER}"
     echo "  -f(--file) <file>, default: ${FILENAME}"
-    echo "  -H(--host) <hostname>, default: ${HOST}"
-    echo "  -P(--port) <port>, default: ${PORT}"
+    echo "  -h(--host) <hostname>, default: ${HOST}"
+    echo "  -p(--port) <port>, default: ${PORT}"
     echo "  -k(--keysize) <size>, default: ${KEYSIZE}"
     echo "  -t(--keytype) <type>, default: ${KEYTYPE}"
     exit 2
@@ -44,11 +44,11 @@ do
 			FILENAME="$1"
 			shift
 			;;
-		-H*|--host)
+		-h*|--host)
 			HOST="$1"
 			shift
 			;;
-		-P*|--port)
+		-p*|--port)
 			SSH_OPTS="${SSH_OPTS} -p $1"
 			shift
 			;;
