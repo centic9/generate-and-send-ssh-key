@@ -16,7 +16,7 @@ SSH_OPTS="-o PubkeyAuthentication=no"
 #
 
 function usage() {
-	echo "Speciy some parameters, ${1}valid ones are:"
+	echo "Specify some parameters, ${1}valid ones are:"
     echo "  -u(--user) <username>, default: ${USER}"
     echo "  -f(--file) <file>, default: ${FILENAME}"
     echo "  -h(--host) <hostname>, default: ${HOST}"

@@ -18,17 +18,21 @@ You need to be able to connect to the remote server with username and password.
 
     git clone git://github.com/centic9/generate-and-send-ssh-key
 
-##### Adjust configuration
-
-The script has some variables that you should configure before running the script:
-
-    cd generate-and-send-ssh-key
-    vi generate-and-send-ssh-key.sh
-
-You should at least set `FILENAME`, `HOST` and `USER`. `FILENAME` should not exist yet as the tool will generate a new key.
-
 ##### Run it
 
+The script expects some commandline arguments which specify which key should be transferred/created:
+
+  -u(--user) <username>, default: preis
+  -f(--file) <file>, default: /home/dstadler/.ssh/id_rsa_preis
+  -h(--host) <hostname>, default: host
+  -p(--port) <port>, default: 
+  -k(--keysize) <size>, default: 2048
+  -t(--keytype) <type>, default: rsa
+  
+
+You should at least set `--file`, `--host` and `--user`. If the key-file does not exist yet, a new key will be generated.
+
+    cd generate-and-send-ssh-key
     ./generate-and-send-ssh-key.sh
 
 This will ask for the password of the target host at least once, probably twice, if the permissions are not set correctly yet.
@@ -55,7 +59,7 @@ writing data to this directory they may fail after this script was run.
 
 #### Licensing
 
-   Copyright 2015-2016 Dominik Stadler
+   Copyright 2015-2017 Dominik Stadler
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
