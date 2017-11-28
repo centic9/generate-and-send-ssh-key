@@ -20,15 +20,16 @@ You need to be able to connect to the remote server with username and password.
 
 ##### Run it
 
-The script expects some commandline arguments which specify which key should be transferred/created:
+The script expects some commandline arguments which specify which key should be transferred/created and 
+where it should be sent to:
 
-  -u(--user) <username>, default: preis
-  -f(--file) <file>, default: /home/dstadler/.ssh/id_rsa_preis
-  -h(--host) <hostname>, default: host
-  -p(--port) <port>, default: 
-  -k(--keysize) <size>, default: 2048
-  -t(--keytype) <type>, default: rsa
-  
+    -u(--user) <username>, default: preis
+    -f(--file) <file>, default: ~/.ssh/id_test
+    -h(--host) <hostname>, default: host
+    -p(--port) <port>, default: <default ssh port>
+    -k(--keysize) <size>, default: 2048
+    -t(--keytype) <type>, default: rsa
+    -P(--passphrase) <key-passphrase>, default: <empty>
 
 You should at least set `--file`, `--host` and `--user`. If the key-file does not exist yet, a new key will be generated.
 

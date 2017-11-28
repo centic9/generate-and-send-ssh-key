@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# define settings vi commandline-options
+# these are the defaults for the commandline-options
 KEYSIZE=2048
 PASSPHRASE=
 FILENAME=~/.ssh/id_test
@@ -20,9 +20,10 @@ function usage() {
     echo "  -u(--user) <username>, default: ${USER}"
     echo "  -f(--file) <file>, default: ${FILENAME}"
     echo "  -h(--host) <hostname>, default: ${HOST}"
-    echo "  -p(--port) <port>, default: ${PORT}"
+    echo "  -p(--port) <port>, default: <default ssh port>"
     echo "  -k(--keysize) <size>, default: ${KEYSIZE}"
     echo "  -t(--keytype) <type>, default: ${KEYTYPE}"
+    echo "  -P(--passphrase) <key-passphrase>, default: ${PASSPHRASE}"
     exit 2
 }
 
@@ -58,6 +59,10 @@ do
 			;;
 		-t*|--keytype)
 			KEYTYPE="$1"
+			shift
+			;;
+		-P*|--passphrase)
+			PASSPHRASE="$1"
 			shift
 			;;
 		*)
@@ -113,6 +118,11 @@ if [ -z "$SSH_COPY_ID" ];then
     cat ${FILENAME}.pub | ssh $SSH_OPTS $USER@$HOST 'cat >> ~/.ssh/authorized_keys'
 else
 	$SSH_COPY_ID $SSH_OPTS -i $FILENAME.pub $USER@$HOST
+    RET=$?
+    if [ $RET -ne 0 ];then
+      echo Executing ssh-copy-id via $SSH_COPY_ID failed, trying to manually copy the key-file instead
+      cat ${FILENAME}.pub | ssh $SSH_OPTS $USER@$HOST 'cat >> ~/.ssh/authorized_keys'
+    fi
 fi
 
 RET=$?
