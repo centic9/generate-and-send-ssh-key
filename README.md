@@ -23,7 +23,7 @@ You need to be able to connect to the remote server with username and password.
 The script expects some commandline arguments which specify which key should be transferred/created and 
 where it should be sent to:
 
-    -u(--user) <username>, default: preis
+    -u(--user) <username>, default: $USER
     -f(--file) <file>, default: ~/.ssh/id_test
     -h(--host) <hostname>, default: host
     -p(--port) <port>, default: <default ssh port>
@@ -34,7 +34,7 @@ where it should be sent to:
 You should at least set `--file`, `--host` and `--user`. If the key-file does not exist yet, a new key will be generated.
 
     cd generate-and-send-ssh-key
-    ./generate-and-send-ssh-key.sh
+    ./generate-and-send-ssh-key.sh --user bob --host myhost
 
 This will ask for the password of the target host at least once, probably twice, if the permissions are not set correctly yet.
 
@@ -60,7 +60,7 @@ writing data to this directory they may fail after this script was run.
 
 #### Licensing
 
-   Copyright 2015-2017 Dominik Stadler
+   Copyright 2015-2018 Dominik Stadler
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
