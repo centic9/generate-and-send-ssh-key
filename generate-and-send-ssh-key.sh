@@ -93,7 +93,7 @@ fi
 # perform the actual work
 if [ -f $FILENAME ]
 then
-    echo Usig existing key
+    echo Using existing key
 else
     echo Creating a new key using $SSH-KEYGEN
     $SSH_KEYGEN -t $KEYTYPE -b $KEYSIZE  -f $FILENAME -N "$PASSPHRASE"
