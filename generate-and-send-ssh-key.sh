@@ -73,6 +73,7 @@ do
 done
 
 echo "Transferring key from ${FILENAME} to ${USER}@${HOST} using options '${SSH_OPTS}', keysize ${KEYSIZE} and keytype: ${KEYTYPE}"
+echo
 echo "Press enter to continue or CTRL-C to abort"
 read
 
@@ -90,6 +91,7 @@ if [ -z "$SSH" ];then
     exit 1
 fi
 
+echo
 # perform the actual work
 if [ -f $FILENAME ]
 then
@@ -104,6 +106,7 @@ else
     fi
 fi
 
+echo
 echo Adjust permissions of generated key-files locally
 chmod 0600 ${FILENAME} ${FILENAME}.pub
 RET=$?
@@ -112,12 +115,13 @@ if [ $RET -ne 0 ];then
     exit 1
 fi
 
+echo
 echo Copying the key to the remote machine $USER@$HOST, this should ask for the password
 if [ -z "$SSH_COPY_ID" ];then
     echo Could not find the 'ssh-copy-id' executable, using manual copy instead
     cat ${FILENAME}.pub | ssh $SSH_OPTS $USER@$HOST 'cat >> ~/.ssh/authorized_keys'
 else
-	$SSH_COPY_ID $SSH_OPTS -i $FILENAME.pub $USER@$HOST
+    $SSH_COPY_ID $SSH_OPTS -i $FILENAME.pub $USER@$HOST
     RET=$?
     if [ $RET -ne 0 ];then
       echo Executing ssh-copy-id via $SSH_COPY_ID failed, trying to manually copy the key-file instead
@@ -131,6 +135,7 @@ if [ $RET -ne 0 ];then
     exit 1
 fi
 
+echo
 echo Adjusting permissions to avoid errors in ssh-daemon, this will ask once more for the password
 $SSH $SSH_OPTS $USER@$HOST "chmod go-w ~ && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
 RET=$?
@@ -140,4 +145,5 @@ if [ $RET -ne 0 ];then
 fi
 
 # Cut out PubKeyAuth=no here as it should work without it now
+echo
 echo Setup finished, now try to run $SSH `echo $SSH_OPTS | sed -e 's/-o PubkeyAuthentication=no//g'` -i $FILENAME $USER@$HOST
