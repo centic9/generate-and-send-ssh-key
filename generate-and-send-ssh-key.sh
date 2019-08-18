@@ -17,13 +17,17 @@ SSH_OPTS="-o PubkeyAuthentication=no"
 
 function usage() {
 	echo "Specify some parameters, ${1}valid ones are:"
-    echo "  -u(--user) <username>, default: ${USER}"
-    echo "  -f(--file) <file>, default: ${FILENAME}"
-    echo "  -h(--host) <hostname>, default: ${HOST}"
-    echo "  -p(--port) <port>, default: <default ssh port>"
-    echo "  -k(--keysize) <size>, default: ${KEYSIZE}"
-    echo "  -t(--keytype) <type>, default: ${KEYTYPE}"
-    echo "  -P(--passphrase) <key-passphrase>, default: ${PASSPHRASE}"
+
+    echo "  -u (--user)       <username>, default: ${USER}"
+    echo "  -f (--file)       <file>,     default: ${FILENAME}"
+    echo "  -h (--host)       <hostname>, default: ${HOST}"
+    
+    echo "  -p (--port)       <port>,     default: <default ssh port>"
+    echo "  -k (--keysize)    <size>,     default: ${KEYSIZE}"
+    echo "  -t (--keytype)    <type>,     default: ${KEYTYPE}"
+    
+    echo "  -P (--passphrase) <key-passphrase>, default: ${PASSPHRASE}"
+
     exit 2
 }
 

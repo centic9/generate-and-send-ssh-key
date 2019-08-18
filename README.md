@@ -6,13 +6,13 @@ adjusts file-permissions both locally and on the remote server to avoid some com
 
 ## Why
 
-Because I failed every time I tried to do this manually.
+Because I failed to remember how, every time I tried to do this manually.
 
 ## How
 
 ##### Preconditions
 
-You need to be able to connect to the remote server with username and password.
+You need to be able to connect to the remote server with a username and password.
 
 ##### Grab it
 
@@ -23,15 +23,18 @@ You need to be able to connect to the remote server with username and password.
 The script expects some commandline arguments which specify which key should be transferred/created and 
 where it should be sent to:
 
-    -u(--user) <username>, default: $USER
-    -f(--file) <file>, default: ~/.ssh/id_test
-    -h(--host) <hostname>, default: host
-    -p(--port) <port>, default: <default ssh port>
-    -k(--keysize) <size>, default: 2048
-    -t(--keytype) <type>, default: rsa
+    -u (--user) <username>, default: $USER
+    -f (--file) <file>,     default: ~/.ssh/id_test
+    -h (--host) <hostname>, default: host
+     
+    -p (--port)    <port>, default: <default ssh port>
+    -k (--keysize) <size>, default: 2048
+    -t (--keytype) <type>, default: rsa
+    
     -P(--passphrase) <key-passphrase>, default: <empty>
 
-You should at least set `--file`, `--host` and `--user`. If the key-file does not exist yet, a new key will be generated.
+You should at least set `--user`, `--file`, and `--host`.  
+If the key-file does not exist yet, a new key will be generated.
 
     cd generate-and-send-ssh-key
     ./generate-and-send-ssh-key.sh --user bob --host myhost
@@ -40,14 +43,16 @@ This will ask for the password of the target host at least once, probably twice,
 
 ##### Enjoy
 
-Now you should be able to connect to the machine via ```ssh -i $FILENAME $USER@$HOST```. If you use the filename 
+Now you should be able to connect to the machine via ```ssh -i $FILENAME $USER@$HOST```.  
+If you use the filename 
 ```~/.ssh/id_rsa``` you can omit the "-i" argument to ssh.
 
 ## Caveat
 
 This script will remove write access to your home-directory for "group" and "other" on the remote server because 
-ssh-public/private key authentication will not work otherwise. So if there are processes running as different user 
-writing data to this directory they may fail after this script was run.
+ssh-public/private key authentication will not work otherwise.  
+So if there are processes running as different user, 
+writing data to this directory may fail for them after this script is run.
 
 ## Related documents
 
@@ -60,7 +65,7 @@ writing data to this directory they may fail after this script was run.
 
 #### Licensing
 
-   Copyright 2015-2018 Dominik Stadler
+   Copyright 2015-2019 Dominik Stadler
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
