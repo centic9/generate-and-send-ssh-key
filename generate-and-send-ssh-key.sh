@@ -76,6 +76,7 @@ do
 	esac
 done
 
+echo
 echo "Transferring key from ${FILENAME} to ${USER}@${HOST} using options '${SSH_OPTS}', keysize ${KEYSIZE} and keytype: ${KEYTYPE}"
 echo
 echo "Press enter to continue or CTRL-C to abort"
