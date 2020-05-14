@@ -10,15 +10,15 @@ Because I failed to remember how, every time I tried to do this manually.
 
 ## How
 
-##### Preconditions
+### Preconditions
 
 You need to be able to connect to the remote server with a username and password.
 
-##### Grab it
+### Grab it
 
     git clone git://github.com/centic9/generate-and-send-ssh-key
 
-##### Run it
+### Run it
 
 The script expects some commandline arguments which specify which key should be transferred/created and 
 where it should be sent to:
@@ -41,11 +41,15 @@ If the key-file does not exist yet, a new key will be generated.
 
 This will ask for the password of the target host at least once, probably twice, if the permissions are not set correctly yet.
 
-##### Enjoy
+### Enjoy
 
 Now you should be able to connect to the machine via ```ssh -i $FILENAME $USER@$HOST```.  
 If you use the filename 
 ```~/.ssh/id_rsa``` you can omit the "-i" argument to ssh.
+
+## Support this project
+
+If you find this tool useful and would like to support it, you can [Sponsor the author](https://github.com/sponsors/centic9)
 
 ## Caveat
 
