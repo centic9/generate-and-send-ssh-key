@@ -115,6 +115,10 @@ if [ ! -f ${FILENAME}.pub ];then
 fi
 
 echo
+echo Having key-information
+ssh-keygen -l -f ${FILENAME}
+
+echo
 echo Adjust permissions of generated key-files locally
 chmod 0600 ${FILENAME} ${FILENAME}.pub
 RET=$?
@@ -155,3 +159,9 @@ fi
 # Cut out PubKeyAuth=no here as it should work without it now
 echo
 echo Setup finished, now try to run $SSH `echo $SSH_OPTS | sed -e 's/-o PubkeyAuthentication=no//g'` -i $FILENAME $USER@$HOST
+
+echo
+echo If it still does not work, you can try the following steps:
+echo "- Make sure ~/.ssh/config does not have custom configuration for this host"
+echo "- Make sure the type of key is supported, e.g. 'dsa' is deprecated and might be disabled"
+echo "- Try running ssh with '-v' and look for clues in the resulting output"
