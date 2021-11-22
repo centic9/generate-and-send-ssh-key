@@ -16,7 +16,7 @@ You need to be able to connect to the remote server with a username and password
 
 ### Grab it
 
-    git clone git://github.com/centic9/generate-and-send-ssh-key
+    git clone git://github.com/centic9/generate-and-send-ssh-key.git
 
 ### Run it
 
