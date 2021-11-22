@@ -31,8 +31,7 @@ function usage() {
     exit 2
 }
 
-if [[ $# < 1 ]]
-then
+if [[ $# < 1 ]];then
 	usage
 fi
 
@@ -79,7 +78,7 @@ done
 echo
 echo "Transferring key from ${FILENAME} to ${USER}@${HOST} using options '${SSH_OPTS}', keysize ${KEYSIZE} and keytype: ${KEYTYPE}"
 echo
-echo "Press enter to continue or CTRL-C to abort"
+echo "Press ENTER to continue or CTRL-C to abort"
 read
 
 # check that we have all necessary parts
@@ -98,8 +97,7 @@ fi
 
 echo
 # perform the actual work
-if [ -f $FILENAME ]
-then
+if [ -f $FILENAME ];then
     echo Using existing key
 else
     echo Creating a new key using $SSH-KEYGEN
@@ -109,6 +107,11 @@ else
         echo ssh-keygen failed: $RET
         exit 1
     fi
+fi
+
+if [ ! -f ${FILENAME}.pub ];then
+    echo Did not find the expected public key at ${FILENAME}.pub
+    exit 1
 fi
 
 echo
