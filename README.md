@@ -6,13 +6,13 @@ adjusts file-permissions both locally and on the remote server to avoid some com
 
 ## Why
 
-Because I failed to remember how, every time I tried to do this manually.
+Because I failed every time I tried to do this manually.
 
 ## How
 
 ### Preconditions
 
-You need to be able to connect to the remote server with a username and password.
+You need to be able to connect to the remote server with ssh and a username and password.
 
 ### Grab it
 
@@ -34,12 +34,13 @@ where it should be sent to:
     -P(--passphrase) <key-passphrase>, default: <empty>
 
 You should at least set `--user`, `--file`, and `--host`.  
-If the key-file does not exist yet, a new key will be generated.
 
     cd generate-and-send-ssh-key
     ./generate-and-send-ssh-key.sh --user bob --host myhost
 
 This will ask for the password of the target host at least once, probably twice, if the permissions are not set correctly yet.
+
+If the key-file does not exist yet, a new key will be generated.
 
 ### Enjoy
 
@@ -55,6 +56,7 @@ If you find this tool useful and would like to support it, you can [Sponsor the 
 
 This script will remove write access to your home-directory for "group" and "other" on the remote server because 
 ssh-public/private key authentication will not work otherwise.  
+
 So if there are processes running as different user, 
 writing data to this directory may fail for them after this script is run.
 
@@ -69,7 +71,7 @@ writing data to this directory may fail for them after this script is run.
 
 #### Licensing
 
-   Copyright 2015-2019 Dominik Stadler
+   Copyright 2015-2021 Dominik Stadler
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
