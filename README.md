@@ -16,7 +16,7 @@ You need to be able to connect to the remote server with ssh and a username and 
 
 ### Grab it
 
-    git clone git://github.com/centic9/generate-and-send-ssh-key.git
+    git clone https://github.com/centic9/generate-and-send-ssh-key.git
 
 ### Run it
 
@@ -71,7 +71,7 @@ writing data to this directory may fail for them after this script is run.
 
 #### Licensing
 
-   Copyright 2015-2021 Dominik Stadler
+   Copyright 2015-2022 Dominik Stadler
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
