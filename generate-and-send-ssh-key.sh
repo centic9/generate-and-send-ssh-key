@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # these are the defaults for the commandline-options
-KEYSIZE=2048
+KEYSIZE=4096
 PASSPHRASE=
 FILENAME=~/.ssh/id_test
 KEYTYPE=rsa
@@ -24,7 +24,7 @@ function usage() {
 
     echo "  -p (--port)       <port>,     default: <default ssh port>"
     echo "  -k (--keysize)    <size>,     default: ${KEYSIZE}"
-    echo "  -t (--keytype)    <type>,     default: ${KEYTYPE}"
+    echo "  -t (--keytype)    <type>,     default: ${KEYTYPE}, typical values are 'rsa' or 'ed25519'"
 
     echo "  -P (--passphrase) <key-passphrase>, default: ${PASSPHRASE}"
 
