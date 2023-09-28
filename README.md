@@ -69,6 +69,11 @@ writing data to this directory may fail for them after this script is run.
 * http://askubuntu.com/questions/4830/easiest-way-to-copy-ssh-keys-to-another-machine
 * http://www.daveperrett.com/articles/2010/09/14/ssh-authentication-refused/
 
+## Documentation on SSH login issues
+
+* How to tackle slow login: https://jrs-s.net/2017/07/01/slow-ssh-logins/
+* Slow SSH logins? Try to restart services `systemd-logind` and `dbus` on the ssh server
+
 #### Licensing
 
    Copyright 2015-2022 Dominik Stadler
