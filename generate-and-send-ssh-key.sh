@@ -128,7 +128,7 @@ if [ ${RET} -ne 0 ];then
 fi
 
 echo
-echo Copying the key to the remote machine ${USER}@${HOST}, this should ask for the password
+echo Copying the key to the remote machine ${USER}@${HOST}, this usually will ask for the password
 if [ -z "${SSH_COPY_ID}" ];then
     echo Could not find the 'ssh-copy-id' executable, using manual copy instead
     cat "${FILENAME}.pub" | ssh ${SSH_OPTS} ${USER}@${HOST} 'cat >> ~/.ssh/authorized_keys'
@@ -148,7 +148,7 @@ if [ ${RET} -ne 0 ];then
 fi
 
 echo
-echo Adjusting permissions to avoid errors in ssh-daemon, this will ask once more for the password
+echo Adjusting permissions to avoid errors in ssh-daemon, this may ask once more for the password
 ${SSH} ${SSH_OPTS} ${USER}@${HOST} "chmod go-w ~ && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
 RET=$?
 if [ ${RET} -ne 0 ];then
